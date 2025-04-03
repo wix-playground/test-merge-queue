@@ -1,11 +1,13 @@
-name: Validate code in the merge queue
+name: Some actions/checks before merge to master
 
 on:
   pull_request:
-  #merge_group:
+  merge_group:
+    types: [checks_requested]
 
 jobs:
   merge-pr:
+    if: github.event_name != 'merge_group'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -15,5 +17,5 @@ jobs:
         pwd
         tree -a -I '.git'
         git status
-    - name: Run slow CI (emulated by a long sleep)
-      run: sleep 300
+    - name: Run 1 min sleep
+      run: sleep 30
