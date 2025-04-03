@@ -1,7 +1,8 @@
 name: Validate code in the merge queue
 
 on:
-  merge_group:
+  pull_request:
+  #merge_group:
 
 jobs:
   merge-pr:
