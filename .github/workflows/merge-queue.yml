@@ -3,11 +3,10 @@ name: Some actions/checks before merge to master
 on:
   pull_request:
   merge_group:
-    types: [checks_requested]
 
 jobs:
   merge-pr:
-    if: github.event_name = 'merge_group'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
